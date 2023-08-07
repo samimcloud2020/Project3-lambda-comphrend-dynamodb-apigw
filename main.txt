@@ -1,0 +1,79 @@
+-------------------------------Mapping Template(method intregation) : RESTAPI----------------------------------------------------------
+https://sflpv1chr2.execute-api.us-east-1.amazonaws.com/test/news?action=news
+
+/news  <-----resource
+GET <--------method
+
+Passing query string parameters to a backend Lambda function
+1.    Open the API Gateway console, and then choose your API.
+
+2.    In the Resources pane, choose the configured HTTP method.
+
+Note: If there’s more than one HTTP method configured for the API, then repeat steps 2 through 15 for each method.
+
+3.    In the Method Execution pane, choose Method Request.
+
+4.    Expand the URL Query String Parameters dropdown list, then choose Add query string.
+
+5.    For the Name field, enter action, and then choose the check mark icon.   <------------------------
+
+6.    Choose the Required check box.
+
+7.    Choose the Method Execution pane.
+
+8.    Choose Integration Request.
+
+9.    Choose the Mapping Templates dropdown list, and then choose Add mapping template.
+
+10.    For the Content-Type field, enter application/json and then choose the check mark icon.
+
+11.    In the pop-up that appears, choose Yes, secure this integration.
+
+12.    For Request body passthrough, choose When there are no templates defined (recommended).
+
+13.    In the mapping template editor, copy and replace the existing script with the following code:
+
+{
+     "action": "$input.params('action')"          <-----------------------------------------
+}
+Note: For more information, see the $input variables.
+
+14.    Choose Save, and then choose Deploy the API.
+
+15.    To test the API's new endpoint, run the following curl command:
+
+curl -X GET https://sflpv1chr2.execute-api.us-east-1.amazonaws.com/test/news?action=news
+
+Important: Make sure that the curl command has the query string parameter action=news.
+-----------------------------------------------query string para for HTTP Endpoint---------------------------------------------------------------------
+Passing query string parameters to an HTTP endpoint
+1.    Open the API Gateway console, and then choose your API.
+
+2.    In the Resources pane, choose the configured HTTP method.
+
+Note: If there’s more than one HTTP method configured for the API, then repeat steps two through 10 for each method.
+
+3.    In the Method Execution pane, choose Method Request.
+
+4.    Expand the URL Query String Parameters dropdown list, and then choose Add query string.
+
+5.    For the Name field, enter type, and then choose the check mark icon.
+
+6.    Choose the Method Execution pane.
+
+7.    Choose Integration Request.
+
+8.    Expand the URL Query String Parameters section.
+
+Note: By default, the method request query string parameters are mapped to the like-named integration request query string parameters.
+To view this, refresh the API Gateway console page. To map a method request parameter to a different integration request parameter, 
+first delete the existing integration request parameter. Then, add a new query string with the desired method request parameter mapping expression.
+
+9.    Choose Save, then choose Deploy the API.
+
+10.    To test the API’s new endpoint, run the following curl command:
+
+curl -X GET https://jp58lnf5vh.execute-api.us-west-2.amazonaws.com/dev/http-endpoint?pet=dog
+Important: Make sure that the curl command has the query string parameter pet=dog.
+
+------------------------------------------------------------------------------------------------------------------------------
